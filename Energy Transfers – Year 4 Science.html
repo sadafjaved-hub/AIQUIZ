@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Energy Transfers – Year 4 Science</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700&display=swap">
+<style>
+:root{--bg:#fff8e7;--card:#ffffff;--ink:#1f2a44;--muted:#55607a;--line:#e5d9b8;--accent:#ff7a1a;--blue:#2b6fff;--green:#1aa56b;--red:#e0344b;--chip:#fff1c9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a2e;--card:#1e2640;--ink:#f4f1e6;--muted:#aab3cc;--line:#34406a;--accent:#ffa24d;--blue:#7aa5ff;--green:#4fd69b;--red:#ff7d8f;--chip:#2b3558;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141a2e;--card:#1e2640;--ink:#f4f1e6;--muted:#aab3cc;--line:#34406a;--accent:#ffa24d;--blue:#7aa5ff;--green:#4fd69b;--red:#ff7d8f;--chip:#2b3558;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 "Nunito",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 56px}
+h1,h2,h3{font-family:"Baloo 2","Trebuchet MS",sans-serif;line-height:1.1;margin:0}
+h1{font-size:clamp(2.4rem,9vw,4.4rem);font-weight:800}
+h2{font-size:1.8rem;margin:44px 0 10px}
+h3{font-size:1.2rem}
+.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.rule{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:16px 20px;margin:20px 0;box-shadow:6px 6px 0 var(--accent)}
+.rule b{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px}
+.card p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+.emoji{font-size:2rem}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+button{font:inherit;cursor:pointer;color:var(--ink)}
+.tab,.opt{background:var(--card);border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:700}
+.tab[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.node{background:var(--chip);border:2px solid var(--ink);border-radius:14px;padding:8px 14px;font-weight:700}
+.node.waste{border-style:dashed;color:var(--red)}
+.arrow{font-size:1.6rem;color:var(--accent);font-weight:800}
+.quiz .q{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt{border-radius:12px}
+.opt.right{background:var(--green);border-color:var(--green);color:#fff}
+.opt.wrong{background:var(--red);border-color:var(--red);color:#fff}
+.fb{min-height:1.4em;margin-top:6px;font-size:.95rem;color:var(--muted)}
+.score{font-family:"Baloo 2",sans-serif;font-size:1.5rem}
+table{border-collapse:collapse;width:100%}
+.wrap{overflow-x:auto}
+th,td{border-bottom:2px solid var(--line);padding:8px;text-align:left}
+</style>
+</head>
+<body>
+<main>
+<h1>Energy transfers</h1>
+<p class="lead">Energy is what makes things happen. It can’t be seen, but we can see what it does: lights glow, cars move and toasters get hot. Let’s find out how energy moves from place to place.</p>
+
+<div class="rule"><b>Big idea:</b> Energy is never made or used up. It is <b>transferred</b> (moved) from one store or form to another.</div>
+
+<h2>Forms of energy</h2>
+<div class="grid">
+<div class="card"><div class="emoji">💡</div><h3>Light</h3><p>Lets us see. From the Sun, lamps and torches.</p></div>
+<div class="card"><div class="emoji">🔊</div><h3>Sound</h3><p>Made by vibrations. Travels as waves.</p></div>
+<div class="card"><div class="emoji">🔥</div><h3>Heat</h3><p>Makes things warmer. Also called thermal energy.</p></div>
+<div class="card"><div class="emoji">🏃</div><h3>Kinetic</h3><p>Movement energy. Anything that moves has it.</p></div>
+<div class="card"><div class="emoji">🔌</div><h3>Electrical</h3><p>Energy carried by electric current in wires.</p></div>
+<div class="card"><div class="emoji">🍎</div><h3>Chemical</h3><p>Stored in food, fuel and batteries.</p></div>
+</div>
+
+<h2>Follow the energy</h2>
+<p>Pick an object to see where its energy comes from and where it goes.</p>
+<div class="tabs" id="tabs" role="group" aria-label="Choose an object"></div>
+<div class="card" id="chainBox" aria-live="polite"></div>
+
+<h2>Useful and wasted energy</h2>
+<p>Most devices transfer some energy into forms we don’t want. This is <b>wasted energy</b>, and it usually spreads out as heat. A light bulb is for light, but it also gets hot to touch. The hot part is wasted.</p>
+<div class="wrap"><table>
+<tr><th>Device</th><th>Useful energy</th><th>Wasted energy</th></tr>
+<tr><td>Light bulb</td><td>Light</td><td>Heat</td></tr>
+<tr><td>Radio</td><td>Sound</td><td>Heat</td></tr>
+<tr><td>Electric fan</td><td>Kinetic (moving air)</td><td>Heat and sound</td></tr>
+<tr><td>Bicycle rider</td><td>Kinetic</td><td>Heat</td></tr>
+</table></div>
+
+<h2>Quick quiz</h2>
+<div class="quiz" id="quiz"></div>
+<p class="score" id="score" aria-live="polite"></p>
+
+<h2>Key words</h2>
+<div class="grid">
+<div class="card"><h3>Transfer</h3><p>To move energy from one place or form to another.</p></div>
+<div class="card"><h3>Source</h3><p>Where the energy comes from, such as the Sun or a battery.</p></div>
+<div class="card"><h3>Wasted energy</h3><p>Energy that is not useful, often heat.</p></div>
+<div class="card"><h3>Store</h3><p>A place energy waits, like food or a battery.</p></div>
+</div>
+</main>
+
+<script>
+var items=[
+{n:"Torch 🔦",steps:["Chemical (battery)","Electrical","Light"],waste:"Heat",note:"The battery stores chemical energy. When the switch is closed, it becomes electrical energy and then light."},
+{n:"Toaster 🍞",steps:["Electrical (mains)","Heat"],waste:"Light and sound",note:"Electrical energy flows through wires that get hot. The heat toasts the bread."},
+{n:"Radio 📻",steps:["Electrical","Sound"],waste:"Heat",note:"The speaker vibrates to turn electrical energy into sound waves."},
+{n:"Cyclist 🚴",steps:["Chemical (food)","Kinetic"],waste:"Heat",note:"Your muscles transfer the chemical energy in food into movement. You get warm too!"},
+{n:"Solar calculator ☀️",steps:["Light (Sun)","Electrical"],waste:"Heat",note:"A solar cell transfers light energy into electrical energy."},
+{n:"Sliding down a slide 🛝",steps:["Gravitational (at the top)","Kinetic"],waste:"Heat and sound",note:"At the top you store energy. Going down it becomes movement. Friction makes heat."}
+];
+var tabs=document.getElementById("tabs"),box=document.getElementById("chainBox");
+function show(i){
+  var it=items[i],h="<h3>"+it.n+"</h3><div class='chain'>";
+  it.steps.forEach(function(s,k){h+=(k?"<span class='arrow' aria-hidden='true'>&rarr;</span>":"")+"<span class='node'>"+s+"</span>"});
+  h+="<span class='arrow' aria-hidden='true'>&rarr;</span><span class='node waste'>Wasted: "+it.waste+"</span></div><p>"+it.note+"</p>";
+  box.innerHTML=h;
+  Array.prototype.forEach.call(tabs.children,function(b,k){b.setAttribute("aria-pressed",k===i)});
+}
+items.forEach(function(it,i){var b=document.createElement("button");b.className="tab";b.textContent=it.n;b.onclick=function(){show(i)};tabs.appendChild(b)});
+show(0);
+
+var qs=[
+{q:"A torch is switched on. What useful energy does it give out?",o:["Sound","Light","Kinetic"],a:1,f:"Yes! The bulb gives out light."},
+{q:"Which form of energy is stored in food?",o:["Chemical","Sound","Light"],a:0,f:"Right. Our bodies use it to move and keep warm."},
+{q:"A hairdryer gets warm. What is the heat?",o:["The main useful energy only","Always a bad thing","Often wasted energy"],a:2,f:"Heat is useful in a hairdryer, but any extra heat spreading out is wasted."},
+{q:"What does a solar cell transfer light into?",o:["Electrical energy","Chemical energy","Sound energy"],a:0,f:"Correct! That is how a solar calculator works."},
+{q:"True or false: energy can be used up and disappear.",o:["True","False"],a:1,f:"False. Energy is only transferred, never destroyed."},
+{q:"A speaker transfers electrical energy into...",o:["Heat","Sound","Chemical"],a:1,f:"The speaker vibrates and makes sound."}
+];
+var done=0,right=0,sc=document.getElementById("score"),quiz=document.getElementById("quiz");
+qs.forEach(function(q,qi){
+  var d=document.createElement("div");d.className="q";
+  var p=document.createElement("div");p.innerHTML="<b>"+(qi+1)+".</b> "+q.q;d.appendChild(p);
+  var w=document.createElement("div");w.className="opts";
+  var fb=document.createElement("div");fb.className="fb";
+  q.o.forEach(function(t,oi){
+    var b=document.createElement("button");b.className="opt";b.textContent=t;
+    b.onclick=function(){
+      if(d.dataset.done)return;d.dataset.done=1;done++;
+      var kids=w.children;
+      if(oi===q.a){b.classList.add("right");right++;fb.textContent="✔ "+q.f}
+      else{b.classList.add("wrong");kids[q.a].classList.add("right");fb.textContent="✘ Not quite. "+q.f}
+      if(done===qs.length){sc.textContent="You scored "+right+" out of "+qs.length+(right===qs.length?" – brilliant!":right>=4?" – great work!":" – have another look at the forms of energy.")}
+    };
+    w.appendChild(b)});
+  d.appendChild(w);d.appendChild(fb);quiz.appendChild(d);
+});
+</script>
+</body>
+</html>
